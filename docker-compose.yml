@@ -2,20 +2,21 @@ version: "3.7"
 
 services:
   jenkins:
-    image: jenkins/jenkins:alpine
+    build:
+      context: .
     container_name: jenkins
     user: jenkins
     volumes:
       - /data/jenkins:/var/jenkins_home
     environment:
       - JENKINS_HOST_HOME: "/data/jenkins"
-      - JENKINS_UC  ####
     ports:
       - "8080:8080"
       - "50000:50000"
     secrets:
-     - adminPassword
-     
+     - adminPassword 
 secrets:
   adminPassword:
     file: ./secrets/initialAdminPassword
+    
+    
