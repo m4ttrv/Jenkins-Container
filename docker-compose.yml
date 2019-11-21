@@ -1,22 +1,18 @@
-version: "3.7"
-
-services:
-  jenkins:
-    build:
-      context: .
-    container_name: jenkins
-    user: jenkins
-    volumes:
-      - /data/jenkins:/var/jenkins_home
-    environment:
-      - JENKINS_HOST_HOME: "/data/jenkins"
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    secrets:
-     - adminPassword 
-secrets:
-  adminPassword:
-    file: ./secrets/initialAdminPassword
-    
-    
+version: "3.7" 
+ 
+services: 
+  jenkins: 
+    build: 
+      context: . 
+    container_name: jenkins 
+    user: jenkins 
+    volumes: 
+      - jenkins_data:/var/jenkins_home 
+    ports: 
+      - "8080:8080" 
+      - "50000:50000" 
+ 
+volumes: 
+  jenkins_data: 
+    driver: local 
+   
